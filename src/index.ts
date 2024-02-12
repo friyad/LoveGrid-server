@@ -6,7 +6,7 @@ import express, {
   NextFunction,
 } from "express";
 import cors from "cors";
-import cookeParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes";
 // @ts-ignore
@@ -14,11 +14,6 @@ import helmet from "helmet";
 import connectDB from "./config/dbConfig";
 
 const app: Application = express();
-
-// Middlewares
-app.use(express.json());
-app.use(cookeParser());
-app.use(helmet());
 
 // ENV configuration
 dotenv.config();
@@ -28,6 +23,13 @@ const whitelist = process.env.ALLOWED_ORIGINS
   : [];
 // CORS handling
 app.use(cors({ credentials: true, origin: whitelist }));
+
+// Middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(cookieParser());
+app.use(helmet());
 
 // Connect to DB
 connectDB();
