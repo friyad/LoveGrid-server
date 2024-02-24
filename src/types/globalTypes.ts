@@ -25,3 +25,19 @@ export interface SignInCredentials {
 export interface CRequest extends Request {
   user?: IUser;
 }
+
+export interface ICampaign {
+  id?: number;
+  title: string;
+  category: string;
+  img: string;
+  blurImg: string;
+  color: string;
+  totalDonations?: number; // donors
+  tlDonateAmount?: number; // total donated amount for this campaign
+  goal: number;
+  fundRaiserName: string;
+  fundRaiserPhoto?: string;
+  lastDate: string;
+  description: string;
+}
