@@ -24,6 +24,7 @@ export const handleSignUP = async (req: Request, res: Response) => {
       name,
       email,
       password: hashedPassword,
+      role: ["user"],
     });
     newUser.save();
 

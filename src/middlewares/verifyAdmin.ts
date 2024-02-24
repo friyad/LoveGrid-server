@@ -3,7 +3,11 @@ import { UserModel } from "../models/userModel";
 import { CRequest } from "../types/globalTypes";
 import { getToken } from "next-auth/jwt";
 
-const verifyUser = async (req: CRequest, res: Response, next: NextFunction) => {
+const verifyAdmin = async (
+  req: CRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // We don't need to provide any sceret here because of I already put an NEXTAUTH_SECRET
     // inside of .env and this getToken function will autometically take this env anv verify
@@ -35,6 +39,14 @@ const verifyUser = async (req: CRequest, res: Response, next: NextFunction) => {
       return;
     }
 
+    if (!user?.role?.includes("admin")) {
+      res.status(400).json({
+        status: false,
+        message: "Don't have enough permission for this action",
+      });
+      return;
+    }
+
     req.user = user;
     next();
   } catch (error: unknown) {
@@ -52,4 +64,5 @@ const verifyUser = async (req: CRequest, res: Response, next: NextFunction) => {
       });
   }
 };
-export default verifyUser;
+
+export default verifyAdmin;
