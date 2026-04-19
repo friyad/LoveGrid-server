@@ -11,9 +11,10 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "rimraf build && npx tsc",
-    "start": "node src/index.ts",
-    "dev": "nodemon src/index.ts",
-    "vercel-build": "echo hello"
+    "start": "node build/index.js",
+    "dev": "nodemon -L src/index.ts",
+    "docker:dev": "docker compose --profile dev up -d && docker compose --profile dev logs -f backend-dev",
+    "docker:build": "docker compose --profile prod up -d"
   },
   "license": "ISC",
   "dependencies": {
@@ -37,6 +38,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "nodemon": "^3.1.14"
   }
 }
