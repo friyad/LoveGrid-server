@@ -68,13 +68,13 @@ export default app;
 
 /* 
  Campaigns
-  /campaigns GET
+  /campaigns GET --------------- √√√√√√√√√√√√√√√√√√√√√√
     - Have to implement a pagination system on the get all campaings route to load 8 campaigns per load
     - we can pass the page number via query params
-  /campaign/:id GET
+  /campaign/:id GET --------------- √√√√√√√√√√√√√√√√√√√√√√
     - It will take an extra value which will define where it will find the campaign on success or on running
-  /campaign/:id POST
-  /campaign/:id PUT
+  /campaign/:id POST --------------- √√√√√√√√√√√√√√√√√√√√√√
+  /campaign/:id PUT 
   /campaign/:id DELETE
 
  Donate
@@ -102,5 +102,11 @@ export default app;
              has for each categories [{cagetory:"foo", totalCampaigns: 20}]
    - Stats2: for this stats, how many donations I did and how many donations all user did, these two stats
              with be. {myDonations: 4, totalDonations: 879}
+
+
+
+To Dos:
+- Add slider with multiple photos on campain details page
+- Add success data list to admin dashboard
 
 */

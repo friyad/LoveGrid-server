@@ -10,7 +10,7 @@ const verifyAdmin = async (
 ) => {
   try {
     // We don't need to provide any sceret here because of I already put an NEXTAUTH_SECRET
-    // inside of .env and this getToken function will autometically take this env anv verify
+    // inside of .env and this getToken function will autometically take this env and verify
     // the token then provide us a token
     const token: any = await getToken({ req });
 
