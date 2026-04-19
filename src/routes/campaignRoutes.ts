@@ -4,6 +4,7 @@ import {
   createCampaign,
   getAllCampaigns,
   getCampaignById,
+  updateCampaign,
 } from "../controllers/campaignController";
 import { CampaignValidationSchema } from "../validations/campaignValidations";
 import verifyAdmin from "../middlewares/verifyAdmin";
@@ -18,7 +19,12 @@ campaignRoutes.post(
   validateRequest(CampaignValidationSchema),
   createCampaign
 );
-campaignRoutes.put("/campaign/:id");
+campaignRoutes.put(
+  "/campaign/:id",
+  verifyAdmin,
+  validateRequest(CampaignValidationSchema),
+  updateCampaign
+);
 campaignRoutes.delete("/campaign/:id");
 
 export default campaignRoutes;
