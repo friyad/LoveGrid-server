@@ -2,13 +2,11 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     env_file:
       - .env
-    depends_on:
-      - db
     profiles: ["prod"]
 
   backend-dev:
@@ -19,32 +17,12 @@ services:
       - "5000:5000"
     env_file:
       - .env
-    depends_on:
-      - db
     volumes:
       - .:/app # Bind entire project for live source sync
       - /app/node_modules # Prevent host/container module conflicts
     stdin_open: true # Keep container running for dev
     tty: true
     profiles: ["dev"]
-
-  db:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    env_file:
-      - .db.env
-    volumes:
-      - mongo-data:/data/db
-
-  mongo-express:
-    image: mongo-express:latest
-    ports:
-      - "8081:8081"
-    env_file:
-      - .db.env
-    depends_on:
-      - db
 
 volumes:
   mongo-data:

@@ -5,6 +5,7 @@
   "author": "friyad <riyadhossain.blue@gmail.com>",
   "tags": [
     "donation",
+    "campaign",
     "LoveGrid",
     "love"
   ],
@@ -14,7 +15,8 @@
     "start": "node build/index.js",
     "dev": "nodemon -L src/index.ts",
     "docker:dev": "docker compose --profile dev up -d && docker compose --profile dev logs -f backend-dev",
-    "docker:build": "docker compose --profile prod up -d"
+    "docker:build": "docker compose --profile prod up -d --build",
+    "docker:push": "bash -c \"read -p 'Enter version (e.g. 1.0.0): ' v && docker tag love-grid-server-backend friyad/love-grid-server-backend:\\\"$v\\\" && docker push friyad/love-grid-server-backend:\\\"$v\\\"\""
   },
   "license": "ISC",
   "dependencies": {
